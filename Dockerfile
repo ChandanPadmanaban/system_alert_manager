@@ -6,4 +6,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "jetty-runner.jar", "--port", "8080", "src/main/webapp"]
+CMD ["sh", "-c", "java -jar jetty-runner.jar --port $PORT src/main/webapp"]
