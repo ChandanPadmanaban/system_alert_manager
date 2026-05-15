@@ -2,65 +2,79 @@ package com.cybersec.model;
 
 /**
  * DataAccessLog - Represents a data access log entry.
- *
- * Uses:
- *  - substring() to extract/truncate access type prefix
- *  - StringBuffer for formatted display
  */
 public class DataAccessLog {
 
-    private int    accessId;
+    private int accessId;
     private String accessType;
     private String message;
 
-    public DataAccessLog() {}
-
-    public DataAccessLog(int accessId, String accessType, String message) {
-        this.accessId   = accessId;
-        this.accessType = accessType;
-        this.message    = message;
+    // Default Constructor
+    public DataAccessLog() {
     }
 
-    // Getters & Setters
-    public int    getAccessId()           { return accessId; }
-    public void   setAccessId(int id)     { this.accessId = id; }
+    // Parameterized Constructor
+    public DataAccessLog(int accessId, String accessType, String message) {
+        this.accessId = accessId;
+        this.accessType = accessType;
+        this.message = message;
+    }
 
-    public String getAccessType()           { return accessType; }
-    public void   setAccessType(String t)   { this.accessType = t; }
+    // Getter and Setter for accessId
+    public int getAccessId() {
+        return accessId;
+    }
 
-    public String getMessage()              { return message; }
-    public void   setMessage(String m)      { this.message = m; }
+    public void setAccessId(int accessId) {
+        this.accessId = accessId;
+    }
 
-    /**
-     * Uses substring() to extract the first 4 chars of access type as a short code.
-     * e.g. "UNAUTHORIZED" → "UNAU"
-     */
-    public String getAccessTypeShortCode() {
-        if (accessType != null && accessType.length() >= 4) {
-            return accessType.substring(0, 4).toUpperCase();
-        }
+    // Getter and Setter for accessType
+    public String getAccessType() {
         return accessType;
     }
 
-    /**
-     * Uses StringBuffer to build a formatted log summary line.
-     */
+    public void setAccessType(String accessType) {
+        this.accessType = accessType;
+    }
+
+    // Getter and Setter for message
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    // Returns short code using substring()
+    public String getAccessTypeShortCode() {
+
+        if (accessType != null && accessType.length() >= 4) {
+            return accessType.substring(0, 4).toUpperCase();
+        }
+
+        return accessType;
+    }
+
+    // Formatted summary using StringBuffer
     public String getFormattedSummary() {
+
         StringBuffer sb = new StringBuffer();
+
         sb.append("[ID: ").append(accessId).append("] ");
         sb.append("[").append(accessType).append("] ");
-        // Use substring() to limit message display to first 60 chars
+
         if (message != null && message.length() > 60) {
             sb.append(message.substring(0, 60)).append("...");
         } else {
             sb.append(message);
         }
+
         return sb.toString();
     }
 
-    /**
-     * Returns true if this log entry represents an unauthorized access.
-     */
+    // Check unauthorized access
     public boolean isUnauthorized() {
         return "UNAUTHORIZED".equalsIgnoreCase(accessType);
     }

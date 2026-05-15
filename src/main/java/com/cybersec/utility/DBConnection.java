@@ -10,9 +10,9 @@ import java.sql.SQLException;
  */
 public class DBConnection {
 
-    private static final String DRIVER   = "org.h2.Driver";
-    private static final String URL      = "jdbc:h2:mem:cyber_monitoring_system;MODE=MySQL;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'cyber_monitoring_system.sql'";
-    private static final String USERNAME = "sa";
+    private static final String DRIVER   = "com.mysql.cj.jdbc.Driver";
+    private static final String URL      = "jdbc:mysql://localhost:3306/cyber_monitoring_system?useSSL=false&serverTimezone=UTC";
+    private static final String USERNAME = "root";
     private static final String PASSWORD = "";
 
     // Private constructor to prevent instantiation
