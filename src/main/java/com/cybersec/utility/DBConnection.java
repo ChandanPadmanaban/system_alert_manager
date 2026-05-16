@@ -56,7 +56,7 @@ public class DBConnection {
     private static synchronized void initializeDatabase(Connection conn) {
         try {
             java.sql.DatabaseMetaData meta = conn.getMetaData();
-            java.sql.ResultSet res = meta.getTables(null, null, "users", new String[] {"TABLE"});
+            java.sql.ResultSet res = meta.getTables(null, null, "file_integrity_alerts", new String[] {"TABLE"});
             if (!res.next()) {
                 System.out.println("Initializing database from cyber_monitoring_system.sql...");
                 java.nio.file.Path path = java.nio.file.Paths.get("cyber_monitoring_system.sql");

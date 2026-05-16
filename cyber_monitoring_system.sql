@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
     created_at  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
 );
 
-MERGE INTO users (username, password, full_name, role) KEY (username) VALUES ('admin', 'admin123', 'System Administrator', 'admin');
+INSERT IGNORE INTO users (username, password, full_name, role) VALUES ('admin', 'admin123', 'System Administrator', 'admin');
 
 -- ============================================================
 -- Table: data_access_logs
